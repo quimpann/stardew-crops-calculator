@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let allowRegrowth = document.getElementById("crop-regrowth");
   let allowRegrowthLive = document.getElementById("allowRegrowthLive");
 
-  // TODO: Set default for regrowth to "no" on page load
-  // TODO: Add live data validation for form fields
+  // DONE: Set default for regrowth to "no" on page load
+  // NONEED: Add live data validation for form fields
 
   allowRegrowth.addEventListener("change", function () {
     if(this.checked) {
@@ -18,66 +18,100 @@ document.addEventListener("DOMContentLoaded", function () {
       allowRegrowthLive.style.display = "none";
     }
   });
+  
+  let cropDuration = document.getElementById("crop-duration");
+  let cropCustomDuration = document.getElementById("cropCustomDuration");
+
+
 });
 
 let cropForm = document.getElementById("crop-form");
 let cropListTableBody = document.querySelector("#crop-list-table tbody");
 let ctx = document.getElementById("crop-canvas").getContext("2d");
+
+let cropDetails = [];
 let cropData = [];
-let cropLabels = [];
+let cropLabels = []; 
 
 cropForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  // TODO: Prevent form submission if fields are empty
-  // TODO: Add validation for numeric fields (price, growth days, etc.)
-
   let cropName = document.getElementById("crop-name").value;
-  let cropPrice = document.getElementById("crop-price").value;
+  let seedPrice = document.getElementById("seed-price").value;
   let cropGrowthDays = document.getElementById("crop-growth-days").value;
-  let cropRegrowth = document.getElementById("crop-regrowth").value;
+  let cropRegrowth = document.getElementById("crop-regrowth").checked;
   let cropRegrowthEvery = document.getElementById("crop-regrowth-every").value;
-  let cropQuantity = document.getElementById("crop-quantity").value;
+  let cropPrice = document.getElementById("crop-price").value;
 
-  if (!cropName || !cropPrice || !cropGrowthDays || !cropQuantity) {
+  if (!cropName || !seedPrice || !cropGrowthDays || !cropPrice) {
     toastPopUp();
     return;
   }
-  // TODO: calculate crop price
 
-  document.getElementById("no-crops-yet").style.display="none";
+  // Convert values
+  const Seed_Price = parseFloat(seedPrice);
+  const growthDays = parseInt(cropGrowthDays);
+  const regrowthEvery = parseInt(cropRegrowthEvery) || 0;
+  const Crop_Price = parseInt(cropPrice);
+
+
+  // Calculations
+  const seasonDuration = 28;
+  let harvests = 1;
+
+  if (cropRegrowth && regrowthEvery > 0) {
+    const remainingDays = seasonDuration - growthDays;
+    harvests += Math.floor(remainingDays / regrowthEvery);
+  }
+
+  // Fixed profitPerDay calculation
+  const profitPerHarvest = Crop_Price - Seed_Price ;
+  const normalTotalProfit = profitPerHarvest * harvests;
+
+  const profitPerSeed = normalTotalProfit;
+  const roi = (profitPerSeed / Seed_Price) * 100;
+
+  const totalGrowthTime = cropRegrowth ? 28 : growthDays;
+  const profitPerDay = normalTotalProfit / totalGrowthTime;
+
+
+  // Store details for tooltip
+  cropDetails.push({
+    name: cropName,
+    quantity: Crop_Price,
+    profitPerSeed: roi,
+    duration: growthDays,
+    harvests: harvests,
+    regrowth: cropRegrowth ? `Yes (every ${cropRegrowthEvery} days)` : 'No',
+    normalTotalProfit: normalTotalProfit,
+    profitPerDay: profitPerDay
+  });
+
+  // Update table
+  document.getElementById("no-crops-yet").style.display = "none";
   const newRow = document.createElement("tr");
   
-  // TODO: If crop has regrowth=yes, add "Every # Days" column with user input value
   newRow.innerHTML = `
-        <td>${cropName}</td>
-        <td>${cropPrice}</td>
-        <td>${cropGrowthDays}</td>
-        <td>${cropRegrowth}</td>
-        <td>${cropRegrowthEvery}</td>
-        <td>${cropQuantity}</td>
-        <td>
-          <!-- TODO: Add edit and delete buttons -->
-        </td>
-    `;
+    <td>${cropName}</td>
+    <td>${seedPrice}</td>
+    <td>${cropGrowthDays}</td>
+    <td>${cropRegrowth ? 'Yes' : 'No'}</td>
+    <td>${cropRegrowth ? cropRegrowthEvery : '-'}</td>
+    <td>${cropPrice}</td>
+
+  `;
 
   cropListTableBody.appendChild(newRow);
 
-  // TODO: Add event listeners for edit/delete buttons
-  // TODO: Implement edit functionality
-  // TODO: Implement delete functionality
 
-  //updates graph
-  cropData.push(cropQuantity);
-  cropLabels.push(cropName);
+  cropLabels.push(cropName); 
+  cropData.push(normalTotalProfit);
+
+  console.log(cropLabels, cropData);
   updateGraph();
-
-  //reset form
   cropForm.reset();
+  allowRegrowthLive.style.display = "none";
 });
-
-// TODO: Add search functionality for crops
-// TODO: Create function to filter/search crops in the table
 
 function updateGraph() {
   if (window.myChart) {
@@ -87,29 +121,46 @@ function updateGraph() {
   window.myChart = new Chart(ctx, {
     type: "bar", 
     data: {
-      labels: cropLabels,
-      datasets: [
-        {
-          label: "Crop Price",
-          data: cropData,
-          borderColor: "rgb(57, 120, 65)",
-          borderWidth: 1,
-          fill: true,
-          backgroundColor: ["rgb(53 128 175)", "rgb(48 124 42)", "rgb(114, 176, 131)", "rgb(214 151 48)",
-          ]
-        },
-      ],
+      labels: cropLabels, 
+      datasets: [{
+        label: "Total Profit",
+        data: cropData,
+        borderColor: "rgb(57, 120, 65)",
+        borderWidth: 1,
+        backgroundColor: [
+          "rgb(53, 128, 175)", 
+          "rgb(48, 124, 42)", 
+          "rgb(114, 176, 131)", 
+          "rgb(214, 151, 48)"
+        ]
+      }]
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-      title: {
-        display: true,
-        text: 'yomom',
-      },
-    },
+      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.dataset.label || '';
+              return `${label}: G$${context.raw.toFixed(2)}`;
+            },
+            afterLabel: function(context) {
+              const crop = cropDetails.find(c => c.name === context.label);
+              if (!crop) return "";
+              
+              return [
+                `Sell Price: ${crop.quantity}`,
+                `Profit Per Seed: ${crop.profitPerSeed}`,
+                `Duration: ${crop.duration} days`,
+                `Harvests: ${crop.harvests}`,
+                `Regrowth: ${crop.regrowth}`,
+                `Total Profit: G$${crop.normalTotalProfit.toFixed(2)}`,
+                `Profit/Day: G$${crop.profitPerDay.toFixed(2)}`
+              ].join('\n');
+            }
+          }
+        }
+      }
+    }
   });
 }

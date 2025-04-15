@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="src\assets\icon3.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title> Stardew Crops Calculator</title>
   <link rel="stylesheet" href="src/index.css">
@@ -19,6 +19,7 @@
         
       </div>
       <div class="content-container">
+        <div class="panel1">
         <div class="Calculator-container">
           <section class="Calculator-container-header">
             <span>
@@ -34,18 +35,20 @@
               </div>
 
               <div class="form-group">
-                <label for="crop-price">Seed Price</label>
-                <input type="number" id="crop-price" name="cropPrice">
+                <label for="seed-price">Seed Price</label>
+                <input type="number" id="seed-price" name="cropPrice">
               </div>
 
               <div class="form-group">
                 <label for="crop-growth-days"> Growth Days</label>
-                <input type="text" id="crop-growth-days" name="cropGrowthDays">
+                <input type="number" id="crop-growth-days" name="cropGrowthDays">
+                
               </div>
 
               <div class="form-group">
                 <label for="crop-regrowth">Regrows? </label>
                 <input type="checkbox" id="crop-regrowth" name="cropRegrowth">
+                
               </div>
 
               <div class="form-group" id="allowRegrowthLive" style="display: none;">
@@ -55,10 +58,10 @@
               </div>
 
               <div class="form-group">
-                <label for="crop-quantity">Crop Price</label>
-                <input type="number" id="crop-quantity" name="cropQuantity">
+                <label for="crop-price">Crop Price</label>
+                <input type="number" id="crop-price" name="cropQuantity">
               </div>
-              
+
               <button type="submit" id="crop-submit"> Add to list</button>
             </form>
           </div>
@@ -95,6 +98,7 @@
                   <th>Crop Price</th>
                   <th>Growth Days</th>
                   <th>Regrows</th>
+                  <th>Every # Days</th>
                 </tr>
               </thead>
               <tbody>
@@ -103,7 +107,7 @@
             </table>
           </div>
         </div>
-
+      </div>
         <div class="graph-container">
           <section class="graph-container-header">
             <span>
@@ -111,6 +115,14 @@
             </span>
           </section>
           <div class="graph-container-graph">
+            <div class="form-group" id="form-group-graph">
+              <label for="crop-duration">Default Duration</label>
+              <input type="checkbox" id="crop-duration" name="cropDuration">
+              <label for="crop-customDuration">Custom</label>
+              <input type="number" id="crop-customDuration" name="cropCustomDuration" placeholder="1" class="tipaklong">
+              <button type="submit"> Calculate</button>
+            </div>
+            
             <p id="no-crops-yet"> No added crops yet!
             </p>
             <canvas id="crop-canvas"></canvas>

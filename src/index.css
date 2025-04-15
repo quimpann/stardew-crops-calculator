@@ -93,7 +93,7 @@ button:focus-visible {
   
 }
 .Main-container-content {
-  width:80%;
+  width:90%;
   height: 24rem;
   display: flex;
   flex-direction: column;
@@ -104,9 +104,17 @@ button:focus-visible {
 
 .content-container {
   display: flex;
-  width: 40%;
+  width: 50%;
   gap: 1rem;
   justify-content: center;
+}
+
+.panel1 {
+  
+}
+
+.panel1 .Calculator-container {
+  margin-bottom: 1rem;
 }
 
 .Calculator-container-header, .list-container-header, .graph-container-header{
@@ -125,7 +133,7 @@ button:focus-visible {
   flex-direction: column;
   background-color: rgba(208, 235, 253, 0.8);
   color: #1a1a1a;
-  flex: 1;
+  flex: 2;
 }
 
 .Calculator-container-form {
@@ -154,6 +162,12 @@ button:focus-visible {
 
 #crop-submit {
   width: 100%;
+  font-size: 1rem;
+}
+
+#crop-switch {
+  width: 48%;
+  font-size: 1rem;
 }
 
 .graph-container {
@@ -162,7 +176,7 @@ button:focus-visible {
   background-color: rgba(208, 235, 253, 0.8);
   flex: 1;
   color: #1a1a1a;
-  min-width: 100%;
+  min-width: 80%;
 }
 
 .graph-container-graph p {
@@ -175,7 +189,7 @@ button:focus-visible {
   flex-direction: column;
   background-color: rgba(208, 235, 253, 0.8);
   color: #1a1a1a;
-  flex: 1;
+  flex: 2;
 
 }
 
@@ -186,7 +200,6 @@ button:focus-visible {
 .list-container-form table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
 }
 
 .list-container-form th {
@@ -217,10 +230,13 @@ button:focus-visible {
 }
 
 #crop-canvas {
-  width: 1rem;
-  height: 1rem;
+  width: -webkit-fill-available;
+  height: auto;
   display: flex;
   align-self: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 #Toast  {
@@ -245,12 +261,56 @@ button:focus-visible {
   animation: fade in 0.5s, fade out 0.5s 2.5s;
 }
 
+#form-group-graph {
+  box-sizing: border-box;
+  display: unset;
+  min-width: none;
+  flex: unset;
+}
+#crop-customDuration{
+  width: 30%;
+}
+
+#form-group-graph button {
+  padding: 0.4em 1em;
+}
+
+.list-container {
+  max-height: 18rem;
+}
+
+.list-container .list-container-header {
+  position: sticky;
+  top: 0;
+}
+
+.list-container .list-container-form {
+  position: sticky;
+  top: 0;
+}
+
+#crop-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-y: auto; 
+  display: block; 
+  max-height: 8rem; 
+}
+
+#crop-list-table thead{
+  position: sticky;
+  top: 0;
+}
 
 
+#crop-list-table tr{
+  text-align: center;
+}
 
 @media (max-width: 768px){
   body {
     border: 1px solid orange;
+    min-height: 0;
     height: 100vh;
     background-size: cover;
   }
@@ -258,21 +318,66 @@ button:focus-visible {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: -webkit-fill-available;
+    height: 90%;
     place-content: center;
     align-items: center;
     justify-content: center;
     border: 1px solid red;
   }
   
+  .content-container {
+    flex-wrap: wrap;
+  }
+
+  .Calculator-container {
+    max-height: 20rem;
+    flex-basis: 1rem;
+  }
+
+  .list-container {
+    max-height: 18rem;
+  }
+  
+  .list-container .list-container-header {
+    position: sticky;
+    top: 0;
+  }
+
+  .list-container .list-container-form {
+    position: sticky;
+    top: 0;
+  }
+
+  #crop-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-y: auto; 
+    display: block; 
+    max-height: 8rem; 
+  }
+
+  #crop-list-table thead{
+    position: sticky;
+    top: 0;
+  }
+
+  
+  #crop-list-table tr{
+    text-align: center;
+  }
+
+  .graph-container {
+    max-height: 10rem;
+  }
+
   .Main-container-content {
-    border: 1px solid green;
+    height: 90%;
   }
 
   .header {
     position: sticky;
     top: 0;
-    margin-bottom: 5rem;
+    margin-bottom: 6rem;
 
     width: 100vw;
     backdrop-filter: blur(5px);
@@ -280,7 +385,6 @@ button:focus-visible {
 
   .content-container {
     width: 100%;
-    border: 10px solid green;
     flex-direction: column;
   }
 }
