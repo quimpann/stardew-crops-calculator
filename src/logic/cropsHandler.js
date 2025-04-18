@@ -1,3 +1,25 @@
+/*
+TODO:
+* Feature
+> make graph highest profit is organized from left to right
+> add more tooltips for other qualities and type of produce
+> edit will create a pop up modal that allows the user to freely edit the contents
+> delete will also create a pop up model, preferably in the same modal as delete
+> allow user to export a list and import said list for better ux 
+> create an array for auto complete feature
+
+
+* Aesthetic:
+> get the time and if its daytime at the user place, change the bg to daytime
+> change the bg to gif where the stars are twinkling or a comet comes by or there are birds flying (day)
+
+* Changelog
+> add changelogs and kofi for donation
+> in the changelog, at the top, add a suggestion box
+> in the changelog, add the other todo feature
+
+*/
+
 function toastPopUp() {
   let toastPopUp = document.getElementById("Toast");
   toastPopUp.className = "show";
@@ -38,10 +60,11 @@ cropForm.addEventListener("submit", function (event) {
 
   let cropName = document.getElementById("crop-name").value;
   let seedPrice = document.getElementById("seed-price").value;
+  let cropPrice = document.getElementById("crop-price").value;
   let cropGrowthDays = document.getElementById("crop-growth-days").value;
   let cropRegrowth = document.getElementById("crop-regrowth").checked;
   let cropRegrowthEvery = document.getElementById("crop-regrowth-every").value;
-  let cropPrice = document.getElementById("crop-price").value;
+  
 
   if (!cropName || !seedPrice || !cropGrowthDays || !cropPrice) {
     toastPopUp();
