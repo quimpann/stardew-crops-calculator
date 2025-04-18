@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="images/title.png" alt="Logo" width="80" height="80">
+    <img src="src/assets/title.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center"> Stardew Crops Calculator</h3>
@@ -16,9 +16,7 @@ I wanted to share this to other modded gameplay enjoyers, like me, to get the mo
     <br />
     <a href="https://github.com/quimpann/stardew-crops-calculator"> Use Calculator </a>
     &middot;
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    &middot;
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+
   </p>
 </div>
 
@@ -41,21 +39,9 @@ I wanted to share this to other modded gameplay enjoyers, like me, to get the mo
   </ol>
 </details>
 
-
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 ### Built With
 * [![React][React.js]][React-url]
-* [![Vite][Vite][Vite-url]]
+* [![Vite][Vite.dev]][Vite-url]
 * [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -63,7 +49,7 @@ I wanted to share this to other modded gameplay enjoyers, like me, to get the mo
 <!-- ROADMAP -->
 ## Roadmap
 Upcoming Features
-- [ ] Add Basic Calculation
+- [x] Add Basic Calculation
 - [ ] Show the highest profit organized from left to right.
 - [ ] "Edit" and "Delete" will create a pop-up modal that allows the user to freely edit the contents.
 - [ ] More tooltips for other qualities and types of produce.
@@ -103,4 +89,4 @@ Upcoming Features
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[JQuery-url]: https: //jquery.com 
