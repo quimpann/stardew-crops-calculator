@@ -13,29 +13,10 @@
     This handy tool is designed to help Stardew Valley players maximize their farm profits by calculating earnings from crops, such as crops added by expansion mods or tax mods. 
 
 I wanted to share this to other modded gameplay enjoyers, like me, to get the most profits. 
-    <br />
-    <a href="https://github.com/quimpann/stardew-crops-calculator"> Use Calculator </a>
+    <br /><br />
+    <a href="https://quimpann.github.io/stardew-crops-calculator/"> 🌴 Use Calculator 🌴</a>
   </p>
 </div>
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
 
 ### Built With
 * [![React][React.js]][React-url]
