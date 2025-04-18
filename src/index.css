@@ -68,7 +68,6 @@ button:focus-visible {
   flex-direction: column;
   width: 40%;
   height: 4rem;
-
   align-items: center;
   justify-content: center;
 }
@@ -106,9 +105,6 @@ button:focus-visible {
   justify-content: center;
 }
 
-.panel1 {
-}
-
 .panel1 .Calculator-container {
   margin-bottom: 1rem;
 }
@@ -133,6 +129,7 @@ button:focus-visible {
   background-color: rgba(208, 235, 253, 0.8);
   color: #1a1a1a;
   flex: 2;
+  max-width: 100%;
 }
 
 .Calculator-container-form {
@@ -176,6 +173,7 @@ button:focus-visible {
   flex: 1;
   color: #1a1a1a;
   min-width: 80%;
+  max-width: 100%;
 }
 
 .graph-container-graph p {
@@ -238,7 +236,6 @@ button:focus-visible {
   justify-content: center;
   align-content: center;
   align-items: center;
-  border: 1px SOLID RED;
 }
 
 #Toast {
@@ -315,35 +312,48 @@ button:focus-visible {
   box-shadow: rgba(2, 68, 10, 0.35) 0px -50px 36px -28px inset;
 }
 
+
 @media (max-width: 768px) {
   body {
-    border: 1px solid orange;
-    min-height: 0;
-    height: 100vh;
-    background-size: cover;
+    overflow-y: scroll;
+    min-height: 100vh;
+    font-size: 3vw;
+    display: block;
   }
+
   .Main-container {
-    display: flex;
-    flex-direction: column;
+    max-width: fit-content;
     width: 100vw;
     height: 90%;
     place-content: center;
     align-items: center;
     justify-content: center;
-    border: 1px solid red;
+
   }
 
+  .Main-container-content {
+    width: 80%;
+    height: 90vh;
+
+  }
+  .header {
+
+    height: 20%;
+    margin-bottom: 0px;
+  }
   .content-container {
+    margin-top: 0px;
     flex-wrap: wrap;
   }
 
   .Calculator-container {
     max-height: 20rem;
     flex-basis: 1rem;
+    max-width: 100%;
   }
-
   .list-container {
     max-height: 18rem;
+    max-width: 100%;
   }
 
   .list-container .list-container-header {
@@ -359,9 +369,9 @@ button:focus-visible {
   #crop-list-table {
     width: 100%;
     border-collapse: collapse;
-    overflow-y: auto;
     display: block;
     max-height: 8rem;
+    overflow-y: unset;
   }
 
   #crop-list-table thead {
@@ -373,8 +383,18 @@ button:focus-visible {
     text-align: center;
   }
 
+  #crop-list-table tbody {
+    color: black;
+    max-height: 3rem;
+    overflow-y: auto;
+    display: block;
+    box-shadow: rgba(2, 68, 10, 0.35) 0px -50px 36px -28px inset;
+  }
+
   .graph-container {
     max-height: 10rem;
+    max-width: 100%;
+    overflow-y: auto;
   }
 
   .Main-container-content {
