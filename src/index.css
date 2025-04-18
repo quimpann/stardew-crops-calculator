@@ -405,6 +405,7 @@ button:focus-visible {
 
   .graph-container {
     max-width: 100%;
+    margin-bottom: 1rem;
   }
 
   .Main-container-content {
@@ -415,7 +416,6 @@ button:focus-visible {
     position: sticky;
     top: 0;
     margin-bottom: 6rem;
-
     width: 100vw;
     backdrop-filter: blur(5px);
   }
@@ -435,6 +435,11 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #03a007;
+    color: #ffffff;
+  }
+
+  button:hover {
+    background-color: #65d10c;
   }
 }
