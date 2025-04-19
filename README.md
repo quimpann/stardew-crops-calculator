@@ -28,8 +28,8 @@ I wanted to share this to other modded gameplay enjoyers, like me, to get the mo
 ## Roadmap
 Upcoming Features
 - [x] Add Basic Calculation
-- [ ] Show the highest profit organized from left to right.
-- [ ] "Edit" and "Delete" will create a pop-up modal that allows the user to freely edit the contents.
+- [x] Show the highest profit organized from left to right.
+- [x] "Edit" and "Delete" will create a pop-up modal that allows the user to freely edit the contents.
 - [ ] More tooltips for other qualities and types of produce.
 - [ ] Export list and import said list for better UX.
 - [ ] Auto-complete feature.
