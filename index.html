@@ -16,7 +16,7 @@
     <div class="Main-container-content">
       <div class="header">
         <figure class="title"><span>&nbsp;</span></figure>
-        
+
       </div>
       <div class="content-container">
 
@@ -42,13 +42,13 @@
               <div class="form-group">
                 <label for="crop-growth-days"> Growth Days</label>
                 <input type="number" id="crop-growth-days" name="cropGrowthDays">
-                
+
               </div>
 
               <div class="form-group">
                 <label for="crop-regrowth">Regrows? </label>
                 <input type="checkbox" id="crop-regrowth" name="cropRegrowth">
-                
+
               </div>
 
               <div class="form-group" id="allowRegrowthLive" style="display: none;">
@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        
+
         <div class="list-container">
           <section class="list-container-header">
             <span>
@@ -75,21 +75,63 @@
             </span>
           </section>
           <div class="list-container-form">
-            <form action="">
               <button type="submit">Import list </button>
               <button type="submit">Export list</button>
               <br><br>
-              <button type="submit" class="list-button">Edit</button>
-              <button type="submit" class="list-button">Delete</button>
+              <button class="list-button" id="list-button">Edit</button>
               
-              <input type="text" id="list-search" name="listSearch" placeholder="Search Crops..">
-              
+              <div class="modalPopUp" id="modalPopUp">
+                <div class="modalPopUpContent">
+                  <section class="titleContent">
+                    <div class="titleContent-header">
 
-              <button type="submit" class="search-button"></button>
-              
+                    
+                    <div class="titleContent-start">
+                    <span> Configure Crops </span>
+                    </div>
+
+                    <div class="titleContent-end">
+                    <span id="modalPopDown"> ❌ </span>
+                    <span> 💾 </span>
+                  </div>
+                </div>
+                    <table id="crop-list-table">
+                      <thead>
+                        <tr>
+                          <th>Crop Name</th>
+                          <th>Seed Price</th>
+                          <th>Crop Price</th>
+                          <th>Growth Days</th>
+                          <th>Regrows</th>
+                          <th>Every # Days</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </section>
+
+                  <section class="tableContent">
+                    <table id="modal-crop-table-body">
+                      <tbody>
+
+                      </tbody>
+                    </table>
+
+                    <div class="tableContent-button">
+                    <button> All good! </button>
+                    <button id="tableContent-button2"> Wait a minute </button>
+                  </div>
+                  </section>
+
+
+                </div>
+              </div>
+              <button type="submit" class="list-button">Delete</button>
+
+              <input type="text" id="list-search" name="listSearch" placeholder="Search Crops..">
+
             </form>
-            
-            
+
+
             <table id="crop-list-table">
               <thead>
                 <tr>
@@ -102,7 +144,7 @@
                 </tr>
               </thead>
               <tbody>
-                
+
               </tbody>
             </table>
           </div>
@@ -122,7 +164,7 @@
               <input type="number" id="crop-customDuration" name="cropCustomDuration" placeholder="1" class="tipaklong">
               <button type="submit"> Calculate</button>
             </div>
-            
+
             <p id="no-crops-yet"> No added crops yet!
             </p>
             <canvas id="crop-canvas"></canvas>
@@ -134,7 +176,7 @@
   </div>
   <div id="Toast"> Make sure to fill fields first! </div>
 
-<script src="src/logic/cropsHandler.js"></script>
+  <script src="src/logic/cropsHandler.js"></script>
 </body>
 
 </html>

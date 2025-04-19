@@ -1,7 +1,7 @@
 /*
 TODO:
 * Feature
-> make graph highest profit is organized from left to right
+> x make graph highest profit is organized from left to right
 > add more tooltips for other qualities and type of produce
 > edit will create a pop up modal that allows the user to freely edit the contents
 > delete will also create a pop up model, preferably in the same modal as delete
@@ -20,6 +20,39 @@ TODO:
 
 */
 
+function modalPopUp() {
+  document.getElementById("modalPopUp").style.display = "block";
+  populateModalTable();
+}
+
+function modalPopDown() {
+  document.getElementById("modalPopUp").style.display = "none";
+}
+
+document.getElementById("modalPopUp").style.display = "none";
+document.getElementById("modalPopDown").addEventListener("click", modalPopDown);
+
+function populateModalTable() {
+  const originalTableBody = document.querySelector("#crop-list-table tbody");
+  const modalTableBody = document.getElementById("modal-crop-table-body");
+
+  modalTableBody.innerHTML = "";
+
+  const rows = originalTableBody.querySelectorAll("tr");
+  rows.forEach(row => {
+    const newRow = row.cloneNode(true);
+    modalTableBody.appendChild(newRow);
+  });
+}
+
+function showCropsModal() {
+  modalPopUp();
+}
+
+const listButton = document.getElementById("list-button");
+
+listButton.addEventListener("click", showCropsModal);
+
 function toastPopUp() {
   let toastPopUp = document.getElementById("Toast");
   toastPopUp.className = "show";
@@ -31,10 +64,6 @@ function toastPopUp() {
 document.addEventListener("DOMContentLoaded", function () {
   let allowRegrowth = document.getElementById("crop-regrowth");
   let allowRegrowthLive = document.getElementById("allowRegrowthLive");
-
-  // DONE: Set default for regrowth to "no" on page load
-  // NONEED: Add live data validation for form fields
-
   allowRegrowth.addEventListener("change", function () {
     if (this.checked) {
       allowRegrowthLive.style.display = "block";
@@ -43,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  //add later for tooltip
   let cropDuration = document.getElementById("crop-duration");
   let cropCustomDuration = document.getElementById("cropCustomDuration");
 });
@@ -115,10 +145,11 @@ cropForm.addEventListener("submit", function (event) {
   newRow.innerHTML = `
     <td>${cropName}</td>
     <td>${seedPrice}</td>
+    <td>${cropPrice}</td>
     <td>${cropGrowthDays}</td>
     <td>${cropRegrowth ? "Yes" : "No"}</td>
     <td>${cropRegrowth ? cropRegrowthEvery : "-"}</td>
-    <td>${cropPrice}</td>
+    
 
   `;
 
@@ -138,14 +169,24 @@ function updateGraph() {
     window.myChart.destroy();
   }
 
+  const combinedData = cropLabels.map((label, index) => ({
+    label: label,
+    value: cropData[index]
+  }));
+
+  combinedData.sort((a,b) => b.value - a.value);
+
+  const sortedLabels = combinedData.map(item => item.label);
+  const sortedData = combinedData.map(item => item.value);
+
   window.myChart = new Chart(ctx, {
     type: "bar",
     data: {
-      labels: cropLabels,
+      labels: sortedLabels,
       datasets: [
         {
           label: "Total Profit",
-          data: cropData,
+          data: sortedData,
           borderColor: "rgb(57, 120, 65)",
           borderWidth: 1,
           backgroundColor: ["rgb(48, 124, 42)"],
@@ -159,7 +200,7 @@ function updateGraph() {
           beginAtZero: true,
           min: 0.0,
           ticks: {
-            stepSize: 2,
+            stepSize: 0,
           },
         },
       },
